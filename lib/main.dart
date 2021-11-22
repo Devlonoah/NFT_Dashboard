@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:nft_dashboard/dashboard/dashboard.dart';
-import 'package:nft_dashboard/dashboard/widgets/right_side.dart';
-import 'package:nft_dashboard/dashboard/widgets/widgets.dart';
-import 'package:nft_dashboard/theme/app_style.dart';
-import 'package:nft_dashboard/theme/colors.dart';
+import 'package:nft_dashboard/dashboard/responsive.dart';
+import 'package:nft_dashboard/onboard_page.dart';
+import 'dashboard/dashboard.dart';
+import 'dashboard/widgets/right_side.dart';
+import 'dashboard/widgets/widgets.dart';
+import 'theme/app_style.dart';
+import 'theme/colors.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,29 +20,50 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'NFT',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ).copyWith(primaryColor: Colors.black),
-      home: MainView(),
+        title: 'NFT',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ).copyWith(primaryColor: Colors.black),
+        home: const OnboardPage());
+  }
+}
+
+class NavScreen extends StatelessWidget {
+  const NavScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Responsive(
+      desktop: DesktopView(),
+      mobile: MobileView(),
     );
   }
 }
 
-class MainView extends StatelessWidget {
+class DesktopView extends StatelessWidget {
+  const DesktopView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Row(
-        children: const [
-          Expanded(child: LeftSide()),
+        children: [
           Expanded(
+              child: TweenAnimationBuilder(
+                  tween: Tween<double>(begin: 0.0, end: 1.0),
+                  builder: (context, double value, child) {
+                    return Opacity(opacity: value, child: child!);
+                  },
+                  curve: Curves.easeInOut,
+                  duration: Duration(seconds: 2),
+                  child: LeftSide())),
+          const Expanded(
             flex: 4,
             child: DashBoard(),
           ),
-          RightSide(),
+          const RightSide(),
         ],
       ),
     );
@@ -56,7 +79,7 @@ class LeftSide extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const SizedBox(height: 19),
-        _logoText(),
+        logoText(),
         const SizedBox(height: 10),
         GridView(
           padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -118,7 +141,7 @@ class LeftSide extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Row(
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         radius: 15,
                         backgroundImage: NetworkImage(
                             "https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHBvcnRyYWl0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"),
@@ -161,43 +184,34 @@ class LeftSide extends StatelessWidget {
     required String label,
     required void Function()? onTap,
   }) {
-    return Container(
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-          color: Pallete.fadeGrey, borderRadius: BorderRadius.circular(5)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            size: 25,
-            color: Pallete.sideIconColor,
-          ),
-          const SizedBox(height: 5.0),
-          Text(label,
-              style: AppStyle.header.copyWith(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w700,
-                  color: Pallete.stainedWhite2))
-        ],
-      ),
-    );
-  }
-
-  Widget _logoText() {
-    return Center(
-      child: RichText(
-        text: TextSpan(
-          text: 'EZ',
-          style: AppStyle.logoTextStyle
-              .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
-          children: [
-            TextSpan(
-              text: 'NFT',
-              style: AppStyle.logoTextStyle
-                  .copyWith(color: Pallete.green, fontWeight: FontWeight.bold),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(5),
+      child: Material(
+        color: Pallete.fadeGrey,
+        child: InkWell(
+          onTap: () {},
+          child: Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Pallete.fadeGrey,
             ),
-          ],
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  icon,
+                  size: 25,
+                  color: Pallete.sideIconColor,
+                ),
+                const SizedBox(height: 5.0),
+                Text(label,
+                    style: AppStyle.header.copyWith(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w700,
+                        color: Pallete.stainedWhite2))
+              ],
+            ),
+          ),
         ),
       ),
     );

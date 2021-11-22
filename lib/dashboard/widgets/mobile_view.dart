@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:nft_dashboard/dashboard/widgets/widgets.dart';
+import 'package:nft_dashboard/theme/app_style.dart';
 
-import '../theme/app_style.dart';
-import '../theme/colors.dart';
-import 'widgets/banner_section.dart';
-import 'widgets/widgets.dart';
+import 'package:nft_dashboard/theme/colors.dart';
 
-class DashBoard extends StatelessWidget {
-  const DashBoard({Key? key}) : super(key: key);
+class MobileView extends StatelessWidget {
+  const MobileView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const DashBoardBody();
+    return const MobileViewBody();
   }
 }
 
-class DashBoardBody extends StatelessWidget {
-  const DashBoardBody({Key? key}) : super(key: key);
+class MobileViewBody extends StatelessWidget {
+  const MobileViewBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +114,7 @@ class ListingCard extends StatelessWidget {
                 )
               ],
             ),
-            Spacer(),
+            const Spacer(),
             Column(
               children: [
                 Text(

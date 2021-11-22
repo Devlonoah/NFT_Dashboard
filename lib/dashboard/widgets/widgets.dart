@@ -5,3 +5,5 @@ export 'banner_section.dart';
 export 'two_colored_header_text.dart';
 export 'user_avatar.dart';
 export 'bordered_button.dart';
+export 'mobile_view.dart';
+export 'logo_text.dart';
