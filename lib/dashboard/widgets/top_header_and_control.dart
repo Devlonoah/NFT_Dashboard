@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nft_dashboard/dashboard/widgets/two_colored_header_text.dart';
-import 'package:nft_dashboard/theme/colors.dart';
+import 'two_colored_header_text.dart';
+import '../../theme/colors.dart';
 
 class TopHeaderAndControl extends StatelessWidget {
   const TopHeaderAndControl({

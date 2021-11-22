@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nft_dashboard/dashboard/widgets/widgets.dart';
-import 'package:nft_dashboard/theme/colors.dart';
+import 'widgets.dart';
+import '../../theme/colors.dart';
 
 class BannerSection extends StatelessWidget {
   const BannerSection({

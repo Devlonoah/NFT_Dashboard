@@ -2,9 +2,9 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import 'package:nft_dashboard/dashboard/widgets/widgets.dart';
-import 'package:nft_dashboard/theme/app_style.dart';
-import 'package:nft_dashboard/theme/colors.dart';
+import 'widgets.dart';
+import '../../theme/app_style.dart';
+import '../../theme/colors.dart';
 
 class RightSide extends StatelessWidget {
   const RightSide({Key? key}) : super(key: key);
@@ -35,6 +35,7 @@ class RightSide extends StatelessWidget {
               _ChartCard(
                 label: 'Earnings',
                 amount: 7.048,
+                isDebit: false,
               ),
               _ChartCard(
                 label: 'Spending',
@@ -62,7 +63,7 @@ class _ChartCard extends StatelessWidget {
     Key? key,
     required this.label,
     required this.amount,
-    this.isDebit = false,
+    required this.isDebit,
   }) : super(key: key);
 
   @override
@@ -70,7 +71,8 @@ class _ChartCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _chartTitleAndWalletAmouont(title: label, amount: amount),
+        _chartTitleAndWalletAmouont(
+            title: label, amount: amount, isDebit: isDebit),
         Flexible(
           child: LineChart(
             LineChartData(
@@ -80,23 +82,43 @@ class _ChartCard extends StatelessWidget {
                 LineChartBarData(
                   barWidth: 3,
                   isStepLineChart: false,
-                  spots: const [
-                    FlSpot(0, 24),
-                    FlSpot(1, 24),
-                    FlSpot(2, 40),
-                    FlSpot(3, 84),
-                    FlSpot(4, 100),
-                    FlSpot(5, 80),
-                    FlSpot(6, 64),
-                    FlSpot(7, 86),
-                    FlSpot(8, 108),
-                    FlSpot(9, 105),
-                    FlSpot(10, 105),
-                    FlSpot(11, 124),
-                    FlSpot(13, 110),
-                    FlSpot(15, 140),
-                    FlSpot(18, 110),
-                  ],
+                  spots: !isDebit
+                      ? const [
+                          FlSpot(0, 24),
+                          FlSpot(1, 24),
+                          FlSpot(2, 40),
+                          FlSpot(3, 84),
+                          FlSpot(4, 100),
+                          FlSpot(5, 80),
+                          FlSpot(6, 64),
+                          FlSpot(7, 86),
+                          FlSpot(8, 108),
+                          FlSpot(9, 105),
+                          FlSpot(10, 105),
+                          FlSpot(11, 124),
+                          FlSpot(13, 110),
+                          FlSpot(15, 140),
+                          FlSpot(18, 110),
+                        ]
+                      : const [
+                          FlSpot(160, 0),
+                          // FlSpot(140, 15),
+                          // FlSpot(110, 13),
+                          // FlSpot(124, 14),
+                          // FlSpot(105, 10),
+                          // FlSpot(105, 8),
+                          // FlSpot(86, 7),
+                          // FlSpot(
+                          //   100,
+                          //   4,
+                          // ),
+                          // FlSpot(84, 3),
+                          // FlSpot(105, 9),
+                          // FlSpot(80, 5),
+                          // FlSpot(64, 6),
+                          FlSpot(70, 10),
+                          FlSpot(0, 24),
+                        ].reversed.toList(),
                   dotData: FlDotData(show: true),
                   isCurved: true,
                   curveSmoothness: 0.6,
@@ -227,7 +249,8 @@ class Chat {
   });
 }
 
-Widget _chartTitleAndWalletAmouont({String? title, double? amount}) {
+Widget _chartTitleAndWalletAmouont(
+    {String? title, double? amount, bool isDebit = false}) {
   return Row(
     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -258,7 +281,7 @@ Widget _chartTitleAndWalletAmouont({String? title, double? amount}) {
             style: AppStyle.header.copyWith(
               fontSize: 19,
               fontWeight: FontWeight.w700,
-              color: Pallete.lightGreen,
+              color: isDebit ? Pallete.reddish : Pallete.lightGreen,
             )),
       ),
       Text('ETH',

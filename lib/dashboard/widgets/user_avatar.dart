@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nft_dashboard/theme/app_style.dart';
+import '../../theme/app_style.dart';
 
 class UserAvatar extends StatelessWidget {
   const UserAvatar({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nft_dashboard/theme/colors.dart';
+import 'colors.dart';
 
 class AppStyle {
   static TextStyle header = GoogleFonts.oxanium()
