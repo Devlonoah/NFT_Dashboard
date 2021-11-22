@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nft_dashboard/dashboard/widgets/widgets.dart';
-import 'package:nft_dashboard/theme/app_style.dart';
+import 'widgets.dart';
+import '../../theme/app_style.dart';
 
-import 'package:nft_dashboard/theme/colors.dart';
+import '../../theme/colors.dart';
 
 class MobileView extends StatelessWidget {
   const MobileView({Key? key}) : super(key: key);

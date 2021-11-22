@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:nft_dashboard/dashboard/responsive.dart';
-import 'package:nft_dashboard/onboard_page.dart';
+import 'dashboard/responsive.dart';
+import 'onboard_page.dart';
 import 'dashboard/dashboard.dart';
 import 'dashboard/widgets/right_side.dart';
 import 'dashboard/widgets/widgets.dart';
