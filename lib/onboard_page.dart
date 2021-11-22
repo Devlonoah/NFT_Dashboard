@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nft_dashboard/dashboard/widgets/widgets.dart';
-import 'package:nft_dashboard/main.dart';
-import 'package:nft_dashboard/theme/colors.dart';
+import 'dashboard/widgets/widgets.dart';
+import 'main.dart';
+import 'theme/colors.dart';
 
 class OnboardPage extends StatelessWidget {
   const OnboardPage({Key? key}) : super(key: key);
